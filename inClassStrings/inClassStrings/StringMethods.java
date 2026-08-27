@@ -29,6 +29,9 @@ public class StringMethods
 	
 	public static String subString(String str, int beginIndex, int endIndex) 
 	{
+		if (endIndex > str.length())
+			return "ERROR";
+		
 		String newStr = "";
 		for (; beginIndex <= endIndex - 1; beginIndex++)
 		{
