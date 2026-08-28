@@ -10,7 +10,7 @@ public class StringMethods
 		System.out.printf("%s Returned: %s\n", str, toUpperCase(str));
 		System.out.printf("%s Returned: %s\n", str, subString(str, 1, 4));
 		System.out.printf("%s Returned: %s\n", str, arrayToString(toCharArray(str)));
-		System.out.printf("%s Returned: %s\n", str, arrayToString(split(str, ',')));	
+		System.out.printf("%s Returned: %s\n", str, arrayToString(split("1,,,,2", ',')));	
 	}
 	
 	public static String toUpperCase(String str) 
@@ -61,12 +61,17 @@ public class StringMethods
 		
 		String[] newStrings = new String[stringCount + 1];
 		int arrayIndex = 0;
+		int emptyElements = 0;
 		String currString = "";
 		for (int i = 0; i < str.length(); i++)
 		{
 			char currChar = str.charAt(i);
 			if (currChar != delim)
 				currString += currChar;
+			else if (currChar == delim && currString.length() == 0)
+			{
+				emptyElements++;
+			}
 			else
 			{
 				newStrings[arrayIndex] = currString;
@@ -75,6 +80,17 @@ public class StringMethods
 			}			
 		}
 		newStrings[arrayIndex] = currString;
+		
+		if (emptyElements > 0)
+		{
+			String[] tempStrings = new String[newStrings.length - emptyElements];
+			
+			for (int i = 0; i < tempStrings.length; i++)
+			{
+				tempStrings[i] = newStrings[i];
+			}		
+			newStrings = tempStrings;
+		}
 		
 		return newStrings;
 	}
