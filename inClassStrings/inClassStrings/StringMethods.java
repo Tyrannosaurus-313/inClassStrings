@@ -29,11 +29,11 @@ public class StringMethods
 	
 	public static String subString(String str, int beginIndex, int endIndex) 
 	{
-		if (endIndex > str.length() || endIndex <= beginIndex || endIndex < 0 || beginIndex < 0)
+		if (endIndex >= str.length() || endIndex <= beginIndex || endIndex < 0 || beginIndex < 0)
 			return "ERROR";
 		
 		String newStr = "";
-		for (; beginIndex <= endIndex - 1; beginIndex++)
+		for (; beginIndex <= endIndex; beginIndex++)
 		{
 			newStr += str.charAt(beginIndex);
 		}
